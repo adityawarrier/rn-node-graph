@@ -18,6 +18,45 @@ export const resolvers = {
       return movie;
     },
   },
+
+  Mutation: {
+    createUser: (_, args) => {
+      const { input } = args;
+
+      UserList.push({
+        ...input,
+        ...{
+          id: UserList.length + 1,
+        },
+      });
+
+      return UserList[UserList.length - 1];
+    },
+
+    updateUserName: (_, args) => {
+      const { userName, id } = args;
+
+      const user = UserList.find((u) => u.id === parseInt(id, 10));
+
+      if (!user) return null;
+
+      user.username = userName;
+      return user;
+    },
+
+    deleteUser: (_, args) => {
+      const { id } = args;
+
+      const userIndex = UserList.findIndex((u) => u.id === parseInt(id, 10));
+
+      if (userIndex === -1) return null;
+
+      UserList.splice(userIndex, 1);
+
+      return UserList;
+    },
+  },
+
   User: {
     favouriteMovies: () => MovieList,
   },

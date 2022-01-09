@@ -8,13 +8,14 @@ const typeDefs = gql`
     GERMANY
     CHILE
     UKRAINE
+    INDIAN
   }
 
   type User {
     id: ID!
     name: String!
     age: Int!
-    userName: String!
+    username: String!
     nationality: Nationality!
     friends: [User!]
     favouriteMovies: [Movie!]
@@ -32,6 +33,19 @@ const typeDefs = gql`
     user(id: ID!): User
     movies: [Movie!]!
     movie(id: ID!): Movie
+  }
+
+  input CreateUser {
+    name: String!
+    age: Int = 18
+    userName: String!
+    nationality: Nationality!
+  }
+
+  type Mutation {
+    createUser(input: CreateUser!): User!
+    updateUserName(userName: String!, id: ID!): User!
+    deleteUser(id: ID!): [User!]
   }
 `;
 
