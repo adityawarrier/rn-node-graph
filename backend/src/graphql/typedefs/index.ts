@@ -42,10 +42,17 @@ const typeDefs = gql`
     nationality: Nationality!
   }
 
+  input CreateMovieInput {
+    name: String!
+    yearOfPublication: Int = 2020
+    isInTheaters: Boolean = false
+  }
+
   type Mutation {
     createUser(input: CreateUser!): User!
     updateUserName(userName: String!, id: ID!): User!
     deleteUser(id: ID!): [User!]
+    createMovie(movie: CreateMovieInput): Movie!
   }
 `;
 

@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
+import {AddMovie} from './src/components/AddMovie';
 import {Movies} from './src/components/Movies';
 import {Users} from './src/components/Users';
 
 export const App = (): React.ReactElement => {
-  const [type] = useState('');
+  const [type] = useState('AddMovie');
 
   const switchViews = () => {
     switch (type) {
@@ -12,6 +13,8 @@ export const App = (): React.ReactElement => {
         return <Users />;
       case 'Movie':
         return <Movies />;
+      case 'AddMovie':
+        return <AddMovie />;
     }
   };
 

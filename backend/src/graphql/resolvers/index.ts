@@ -55,6 +55,19 @@ export const resolvers = {
 
       return UserList;
     },
+
+    createMovie: (_, args) => {
+      const { movie } = args;
+
+      MovieList.push({
+        ...movie,
+        ...{
+          id: MovieList.length + 1,
+        },
+      });
+
+      return MovieList[MovieList.length - 1];
+    },
   },
 
   User: {
