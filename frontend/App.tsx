@@ -1,18 +1,19 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Movies} from './src/components/Movies';
+import {Users} from './src/components/Users';
 
 export const App = (): React.ReactElement => {
-  return (
-    <View style={styles.container}>
-      <Text>Hey MFs!</Text>
-    </View>
-  );
-};
+  const [type] = useState('');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const switchViews = () => {
+    switch (type) {
+      default:
+      case 'Users':
+        return <Users />;
+      case 'Movie':
+        return <Movies />;
+    }
+  };
+
+  return switchViews();
+};
